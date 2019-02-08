@@ -212,8 +212,14 @@ body{
     }
 }
 
-footer{
-    
+.footer{
+    background-color: $third-color;
+    &_contactinfo{
+        margin: 2em 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 .mailinglist{
     display: flex;

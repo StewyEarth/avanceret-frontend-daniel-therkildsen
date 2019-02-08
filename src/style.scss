@@ -1,7 +1,9 @@
 //scss
-$semitransparent-background: rgba(0, 0, 0, 1);
 $primary-color: #ffffff;
+$primary-color-darker: #A9A6AB;
 $secondary-color: #F7A101;
+$third-color: black;
+$fourth-color: #0f0f0f;
 
 %link-white{
     color: $primary-color;
@@ -11,17 +13,30 @@ $secondary-color: #F7A101;
     @extend %link-white;
     color: $secondary-color;
 }
+.text--white{
+    color: $primary-color;
+}
+.text--gray{
+    color: $primary-color-darker;
+}
+.text--orange{
+    color: $secondary-color;
+}
+.fixedwidth{
+    width: 90%;
+}
 
 html{
     font-family: Arial, Helvetica, sans-serif
 }
 body{
     margin: 0;
+    background-color: $fourth-color;
 }
 
 .sitetop{
     max-width: 100vw;
-    height: 100vh;
+    height: 80vh;
     position: relative;
     display: flex;
     justify-content: center;
@@ -36,7 +51,7 @@ body{
     }
 
     &_header{
-    position: absolute;
+    position: sticky;
     top: 0;
     width: 100%;
     box-sizing: border-box;
@@ -45,9 +60,9 @@ body{
     justify-content: space-between;
     align-items: center;
     color: #ffffff;
-    background-color: $semitransparent-background;
+    background-color: $third-color;
     flex-wrap: wrap;
-    z-index: 1;
+    z-index: 100;
     }
 
     &_sitetitle{
@@ -112,7 +127,7 @@ body{
 
 
         &_header{
-            font-size: 4em;
+            font-size: 3em;
             margin: 0 2rem;
             text-shadow: 3px 3px 5px #000000;
         }
@@ -132,6 +147,7 @@ body{
 }
 @media(min-width: 750px){
     .sitetop{
+        height: 100vh;
         &_headernav{
             display: flex;
             flex-basis: initial;
@@ -163,9 +179,13 @@ body{
     }
 }
 .aboutus{
-    max-width: 100%;
+    margin: 2em 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
     &_imgcontainer{
-        max-width: 80%;;
+        width: 100%;
         &_img{
             width: 100%;
             height: 100%;
@@ -173,5 +193,67 @@ body{
             object-fit: cover;
         }
     }
+    &_textcontent{
 
+        &_header{
+            margin-bottom: .5em;
+        }
+        &_paragraf{
+            margin-top: 0;
+        }
+    }
+}
+@media(min-width:600px){
+    .aboutus{
+        flex-direction: row;
+        &_imgcontainer{
+            width: 50%;
+        }
+    }
+}
+
+footer{
+    
+}
+.mailinglist{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: $third-color;
+    text-align: center;
+    &_form{
+        display: flex;
+        justify-content: center;
+        min-width: 100px;
+        min-height: 2em;
+        padding: 0 0 1em 0;
+        &_input{
+            min-width: 100px;
+            border: none;
+            font-size: 1.3em;
+            padding: .3em 1em;
+            outline: none;
+            font-family: 'Open Sans', sans-serif;
+        }
+        &_submit{
+            background-color: #131016;
+            height: 100%;
+            border: none;
+            color: #ffffff;
+            font-size: 1.3em;
+            padding: .5em;
+        }
+    }
+}
+@media(min-width:750px){
+    .mailinglist{
+        
+        &_form{
+
+            &_input{
+                width: 40%;
+            }
+        }
+    }
 }

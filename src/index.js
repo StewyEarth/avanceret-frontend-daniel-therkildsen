@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // }, 5000)
 
     let getsafenumberInterval = setInterval(() => {
-        let safeNetworth = generateNetworth("20.000.000", "18.000.000");
+        let safeNetworth = generateNetworth("20.000.000", "19.000.000");
         updateNetworth(safeNetworth);
     }, 5000)
 
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", () => {
         percentchangeElem.textContent = changepercent + "%"
         console.log(Math.floor(((newNetworth - previousNetworth) / previousNetworth) * 100) + "%");
     };
-    
+
     function toFixedDecimals(value, decimalpoints) {
         return +parseFloat(value).toFixed(decimalpoints);
     };

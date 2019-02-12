@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="style.css">
-    <title></title>
+    <title>Urban Explorer | Contact</title>
 </head>
 
 <body>
@@ -26,23 +26,33 @@
         </nav>
     </header>
     <main>
-        <div class="contact-sitetop">
+        <div class="sitetop contact-sitetop">
             <img src="img/contact_bg.jpg" alt="site header image" class="sitetop_img">
-    
-            <div class="contact-sitetop_textcontent">
-                <h1 class="contact-sitetop_textcontent_header">Contact us</h1>
-                <p class="contact-sitetop_textcontent_description">While we're good with smoke signals, there are simpler ways for us to get in touch and answer your questions.</p>
+
+            <div class="sitetop_textcontent">
+                <h1 class="sitetop_textcontent_header">Contact us</h1>
+                <p class="sitetop_textcontent_description">While we're good with smoke signals, there are simpler ways
+                    for us to get in touch and answer your questions.</p>
             </div>
         </div>
         <form class="contactform">
-            <input type="text">
-            <input type="email">
-            <input type="tel">
-            <input type="tel">
-            <select name="" id="">
-                <option value="none">none</option>
+            <label for="firstname">Enter your firstname</label>
+            <input type="text" id="firstname" placeholder="Firstname...">
+            <label for="lastname">Enter your lastname</label>
+            <input type="text" id="lastname" placeholder="Lastname...">
+            <label for="email">Enter your email</label>
+            <input type="email" id="email" placeholder="Email...">
+            <label for="phone">Enter your phone number</label>
+            <input type="tel" id="phone" placeholder="Phone number...">
+            <label for="subject">Choose subject</label>
+            <select name="" id="subject">
+                <option value=""></option>
+                <option value="general_support">General Support</option>
+                <option value="billing_support">Billig support</option>
+                
             </select>
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <label for="message">Enter your message</label>
+            <textarea name="" id="message" cols="30" rows="10" placeholder="Enter a message..."></textarea>
             <button class="btn--success">Send Message</button>
         </form>
     </main>
@@ -55,7 +65,7 @@
             </div>
             <form class="mailinglist_form fixedwidth">
                 <input type="email" placeholder="Email" class="mailinglist_form_input">
-                <button type="button" class="mailinglist_form_submit">Subscribe</button>
+                <button class="mailinglist_form_submit">Subscribe</button>
             </form>
         </article>
         <div class="footer_contactinfo fixedwidth">

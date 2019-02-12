@@ -42,23 +42,28 @@
         }
     }
     &_fired{
-        display: none;
+        opacity: 0;
+        display: block;
         position: absolute;
         top: 0;
         width: 100%;
         height: 100%;
         color: red;
-        background-color: rgba(#000000, .9);
+        background-color: rgba(#0A0A0A, 1);
         padding:1em;
         border-radius: 2em;
         box-sizing: border-box;
         overflow: hidden;
+        transition: all 1s;
         img{
             display: block;
             height: 100%;
             width: 100%
         }
     }
+}
+.fadein{
+    opacity: 1;
 }
 .ceocontainer{
     display: flex;

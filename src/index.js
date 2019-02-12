@@ -112,12 +112,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    fetch("https://uinames.com/api/?ext&region=denmark")
-        .then((response) => {
-            return response.json();
-        }).then((data) => {
-            console.log(data);
-        });
 
     let networthValueElem = document.querySelector(".networth_value");
 
@@ -126,22 +120,54 @@ document.addEventListener("DOMContentLoaded", () => {
     //     let safeNetworth = generateSafeNetworth();
     //     updateNetworth(safeNetworth);
     // }, 5000)
+    let timercounter = 0;
+    let timerinterval = 5000;
+    let getNetworthInterval = setInterval(() => {
+        let Networth = generateNetworth("20.000.000", "19.000.000");
+        updateNetworth(Networth);
+        timercounter += timerinterval / 1000;
+        console.log(timercounter);
 
-    let getsafenumberInterval = setInterval(() => {
-        let safeNetworth = generateNetworth("20.000.000", "19.000.000");
-        updateNetworth(safeNetworth);
-    }, 5000)
+        fireCeoHireNewUpdateInfo();
+    }, timerinterval);
+
+
+    let ceoFiredOverlayElem = document.querySelector(".teammember_fired");
+    function fireCeoHireNewUpdateInfo(){
+        if (timercounter == 5){
+
+            clearInterval(getNetworthInterval);
+            timercounter = 0;
+            let Networth = generateNetworth("17.000.000", "16.000.000");
+            updateNetworth(Networth);
+            ceoFiredOverlayElem.classList.add("fadein")
+
+            let ceoNameElem = document.querySelector(".ceo_name");
+            let ceopictureElem = document.querySelector(".ceo_picture");
+            setTimeout(() => {
+                fetch("https://uinames.com/api/?ext&region=united states")
+                .then((response) => {
+                    return response.json();
+                }).then((data) => {
+                    ceoNameElem.textContent = `${data.name} ${data.surname}`;
+                    ceopictureElem.src = data.photo;
+                    setTimeout(()=>{
+                        ceoFiredOverlayElem.classList.remove("fadein")
+                        getNetworthInterval();
+                    },2000)
+                });
+            }, 1000);
+        };
+    };
+
 
     function updateNetworth(number) {
         let percentchangeElem = document.querySelector(".networth_percentchange");
         let previousNetworth = networthValueElem.textContent;
         let newNetworth = number;
-
         networthValueElem.textContent = numberWithCommas(number);
-
         previousNetworth = parseInt(previousNetworth.replace(/\./g, ""));
         let changepercent = toFixedDecimals(((newNetworth - previousNetworth) / previousNetworth) * 100,2);
-
         if (changepercent < 0) {
             percentchangeElem.classList.remove("text--success", "fa-arrow-up");
             percentchangeElem.classList.add("text--error", "fa-arrow-down");
@@ -149,7 +175,6 @@ document.addEventListener("DOMContentLoaded", () => {
             percentchangeElem.classList.add("text--success", "fa-arrow-up");
             percentchangeElem.classList.remove("text--error", "fa-arrow-down");
         }
-
         percentchangeElem.textContent = changepercent + "%"
         console.log(Math.floor(((newNetworth - previousNetworth) / previousNetworth) * 100) + "%");
     };

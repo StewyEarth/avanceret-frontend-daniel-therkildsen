@@ -19,13 +19,20 @@
             width: 100%;
             height: 100%;
             border-radius: 50%;
+            object-fit: cover;
+        }
+    }
+    &_details{
+        h2{
+            margin-bottom: .4rem
+        }
+        p{
+            margin: 0;
         }
     }
     &_fired{
-        display: flex;
         position: absolute;
-        justify-content: center;
-        align-items: center;
+        top: 0;
         width: 100%;
         height: 100%;
         color: red;
@@ -47,6 +54,7 @@
 }
 .ceo{
     display: inline-flex;
+    padding: 1em 2em;
 }
 .networth{
     display: flex;

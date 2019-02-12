@@ -7,9 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let subjectElem = document.querySelector("#subject");
     let messageElem = document.querySelector("#message");
 
-
-
-
     window.onbeforeunload = function () {
         if (contactFormElem != null) {
             let contactdata = {
@@ -122,27 +119,56 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(data);
         });
 
-    let networthValueElem = document.querySelector(".networth_value")
-    networthValueElem.textContent = "$" + numberWithCommas("59.21.0.0.3.58")
+    let networthValueElem = document.querySelector(".networth_value");
 
-    generatesafenumber();
-    function generatesafenumber() {
-        let maxNumber = "20.000.000";
-        let minNumber = "10.000.000";
+
+    // let getsafenumberInterval = setInterval(() => {
+    //     let safeNetworth = generateSafeNetworth();
+    //     updateNetworth(safeNetworth);
+    // }, 5000)
+
+    let getsafenumberInterval = setInterval(() => {
+        let safeNetworth = generateNetworth("20.000.000", "18.000.000");
+        updateNetworth(safeNetworth);
+    }, 5000)
+
+    function updateNetworth(number) {
+        let percentchangeElem = document.querySelector(".networth_percentchange");
+        let previousNetworth = networthValueElem.textContent;
+        let newNetworth = number;
+
+        networthValueElem.textContent = numberWithCommas(number);
+
+        previousNetworth = parseInt(previousNetworth.replace(/\./g, ""));
+        let changepercent = toFixedDecimals(((newNetworth - previousNetworth) / previousNetworth) * 100,2);
+
+        if (changepercent < 0) {
+            percentchangeElem.classList.remove("text--success", "fa-arrow-up");
+            percentchangeElem.classList.add("text--error", "fa-arrow-down");
+        } else {
+            percentchangeElem.classList.add("text--success", "fa-arrow-up");
+            percentchangeElem.classList.remove("text--error", "fa-arrow-down");
+        }
+
+        percentchangeElem.textContent = changepercent + "%"
+        console.log(Math.floor(((newNetworth - previousNetworth) / previousNetworth) * 100) + "%");
+    };
+    
+    function toFixedDecimals(value, decimalpoints) {
+        return +parseFloat(value).toFixed(decimalpoints);
+    };
+
+    function generateNetworth(max, min) {
+        let maxNumber = max;
+        let minNumber = min;
         maxNumber = parseInt(maxNumber.replace(/\./g, ""));
         minNumber = parseInt(minNumber.replace(/\./g, ""));
-
-        let newnumber = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
-        console.log(newnumber)
-    }
-    function generatefirednumber() {
-        let newnumber = Math.floor((Math.random() * 10000000) + 1000000);
-        console.log(newnumber)
+        let newNetworth = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
+        return newNetworth.toString();
     }
 
     function numberWithCommas(x) {
         x = x.replace(/\./g, "");
-        console.log(x)
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 }); // DOMContentLoaded End

@@ -34,7 +34,7 @@ $error-color: red;
     @extend .link--white;
     color: $secondary-color;
     &:hover{
-        color: darken($secondary-color,10)
+        color: darken($secondary-color,10);
     }
 }
 

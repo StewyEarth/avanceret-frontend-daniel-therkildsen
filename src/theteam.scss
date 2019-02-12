@@ -37,8 +37,16 @@
         img{
             display: block;
             height: 100%;
+            width: 100%
         }
     }
+}
+.ceocontainer{
+    display: flex;
+    justify-content: center;
+}
+.ceo{
+    display: inline-flex;
 }
 .networth{
     display: flex;
@@ -51,21 +59,28 @@
     &_title{
         margin: 0;
     }
+    &_valueandpercent{
+        display: flex;
+        margin-top: .5em;
+    }
     &_value{
         margin: .5rem 0 0 0;
         display: flex;
     }
     &_percentchange{
         font-size: .9rem;
-        margin-left: .3em;
+        margin-left: .4rem;
         align-self: flex-start;
+        &::before{
+            margin-right: .2rem;
+        }
     }
 }
 
 @media(min-width:750px){
     .teamgrid{
         display: grid;
-        grid-template-columns: repeat(2,1fr);
+        grid-template-columns: repeat(3,1fr);
         grid-gap: 1em;
     }
     .networth{
@@ -74,6 +89,10 @@
         padding: 2em 0;
         &_title{
             margin: 0 1rem 0 0;
+        }
+        &_valueandpercent{
+
+            margin-top: 0;
         }
         &_value{
             margin: 0;

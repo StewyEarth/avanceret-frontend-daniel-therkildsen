@@ -226,5 +226,4 @@ document.addEventListener("DOMContentLoaded", () => {
             100 * index);
         });
     }
-
 }); // DOMContentLoaded End

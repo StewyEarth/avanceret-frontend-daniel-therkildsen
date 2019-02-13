@@ -116,27 +116,32 @@ document.addEventListener("DOMContentLoaded", () => {
     let networthValueElem = document.querySelector(".networth_value");
 
 
-    // let getsafenumberInterval = setInterval(() => {
-    //     let safeNetworth = generateSafeNetworth();
-    //     updateNetworth(safeNetworth);
-    // }, 5000)
     let timercounter = 0;
     let timerinterval = 5000;
-    let getNetworthInterval = setInterval(() => {
-        let Networth = generateNetworth("20.000.000", "19.000.000");
-        updateNetworth(Networth);
-        timercounter += timerinterval / 1000;
-        console.log(timercounter);
+    let getNetworthInterval;
 
-        fireCeoHireNewUpdateInfo();
-    }, timerinterval);
+    setNetworthInterval(true)
 
+    function setNetworthInterval(flag) {
+        if (networthValueElem != null && flag) {
+            getNetworthInterval = setInterval(() => {
+                let Networth = generateNetworth("20.000.000", "19.000.000");
+                updateNetworth(Networth);
+                timercounter += timerinterval / 1000;
+                console.log(timercounter);
+                fireCeoHireNewUpdateInfo();
+            }, timerinterval);
+        }else{
+            clearInterval(getNetworthInterval);
+        }
+    }
 
     let ceoFiredOverlayElem = document.querySelector(".teammember_fired");
-    function fireCeoHireNewUpdateInfo(){
-        if (timercounter == 5){
+    function fireCeoHireNewUpdateInfo() {
+        if (timercounter == 60 && ceoFiredOverlayElem != null) {
+            
+            setNetworthInterval(false);
 
-            clearInterval(getNetworthInterval);
             timercounter = 0;
             let Networth = generateNetworth("17.000.000", "16.000.000");
             updateNetworth(Networth);
@@ -146,37 +151,39 @@ document.addEventListener("DOMContentLoaded", () => {
             let ceopictureElem = document.querySelector(".ceo_picture");
             setTimeout(() => {
                 fetch("https://uinames.com/api/?ext&region=united states")
-                .then((response) => {
-                    return response.json();
-                }).then((data) => {
-                    ceoNameElem.textContent = `${data.name} ${data.surname}`;
-                    ceopictureElem.src = data.photo;
-                    setTimeout(()=>{
-                        ceoFiredOverlayElem.classList.remove("fadein")
-                        getNetworthInterval();
-                    },2000)
-                });
+                    .then((response) => {
+                        return response.json();
+                    }).then((data) => {
+                        ceoNameElem.textContent = `${data.name} ${data.surname}`;
+                        ceopictureElem.src = data.photo;
+                        setTimeout(() => {
+                            ceoFiredOverlayElem.classList.remove("fadein")
+                            setNetworthInterval(true);
+                        }, 2000);
+                    });
             }, 1000);
         };
     };
 
 
     function updateNetworth(number) {
-        let percentchangeElem = document.querySelector(".networth_percentchange");
-        let previousNetworth = networthValueElem.textContent;
-        let newNetworth = number;
-        networthValueElem.textContent = numberWithCommas(number);
-        previousNetworth = parseInt(previousNetworth.replace(/\./g, ""));
-        let changepercent = toFixedDecimals(((newNetworth - previousNetworth) / previousNetworth) * 100,2);
-        if (changepercent < 0) {
-            percentchangeElem.classList.remove("text--success", "fa-arrow-up");
-            percentchangeElem.classList.add("text--error", "fa-arrow-down");
-        } else {
-            percentchangeElem.classList.add("text--success", "fa-arrow-up");
-            percentchangeElem.classList.remove("text--error", "fa-arrow-down");
-        }
-        percentchangeElem.textContent = changepercent + "%"
-        console.log(Math.floor(((newNetworth - previousNetworth) / previousNetworth) * 100) + "%");
+        if (networthValueElem != null) {
+            let percentchangeElem = document.querySelector(".networth_percentchange");
+            let previousNetworth = networthValueElem.textContent;
+            let newNetworth = number;
+            networthValueElem.textContent = numberWithCommas(number);
+            previousNetworth = parseInt(previousNetworth.replace(/\./g, ""));
+            let changepercent = toFixedDecimals(((newNetworth - previousNetworth) / previousNetworth) * 100, 2);
+            if (changepercent < 0) {
+                percentchangeElem.classList.remove("text--success", "fa-arrow-up");
+                percentchangeElem.classList.add("text--error", "fa-arrow-down");
+            } else {
+                percentchangeElem.classList.add("text--success", "fa-arrow-up");
+                percentchangeElem.classList.remove("text--error", "fa-arrow-down");
+            }
+            percentchangeElem.textContent = changepercent + "%"
+            console.log(Math.floor(((newNetworth - previousNetworth) / previousNetworth) * 100) + "%");
+        };
     };
 
     function toFixedDecimals(value, decimalpoints) {
@@ -190,10 +197,10 @@ document.addEventListener("DOMContentLoaded", () => {
         minNumber = parseInt(minNumber.replace(/\./g, ""));
         let newNetworth = Math.floor(Math.random() * (maxNumber - minNumber + 1)) + minNumber;
         return newNetworth.toString();
-    }
+    };
 
     function numberWithCommas(x) {
         x = x.replace(/\./g, "");
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    }
+    };
 }); // DOMContentLoaded End

@@ -1,0 +1,23 @@
+.gallery{
+    display: grid;
+    grid-template-columns: repeat(2,1fr); 
+    grid-gap: 1em;
+    margin: 2em;
+    &_item{
+        width: 100%;
+        &_image{
+            display: block;
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            &:hover{
+                
+            }
+        }
+    }
+}
+@media(min-width:750px){
+    .gallery{
+        grid-template-columns: repeat(4,1fr); 
+    }
+}

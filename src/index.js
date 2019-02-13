@@ -84,12 +84,12 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 messageElem.style.borderColor = "";
             }
-            // firstnameElem.value = "";
-            // lastnameElem.value = "";
-            // emailElem.value = "";
-            // phoneElem.value = "";
-            // subjectElem.value = "";
-            // messageElem.value = "";
+            firstnameElem.value = "";
+            lastnameElem.value = "";
+            emailElem.value = "";
+            phoneElem.value = "";
+            subjectElem.value = "";
+            messageElem.value = "";
             let confirmationmessage = `Thanks for contacting us ${firstnameElem.value}, we will get back to you as soon as possible!`
             showmailConfirmation(confirmationmessage);
         });

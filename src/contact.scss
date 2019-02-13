@@ -19,7 +19,6 @@
     width: 80%;
     display: flex;
     flex-direction: column;
-    color: $primary-color;
     label{
         margin: 1em 0;
     }
@@ -39,6 +38,6 @@
 }
 @media(min-width: 750px){
     .contactform{
-        width: 60%;
+        width: 50%;
     }
 }

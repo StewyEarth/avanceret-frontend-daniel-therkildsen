@@ -36,6 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
             };
         }
     };
+    let mailsuccessElem = document.querySelector(".mailsuccess");
+    let mailsuccessTextElem = document.querySelector(".mailsuccess_text");
 
     if (contactFormElem != null) {
         contactFormElem.addEventListener("submit", (event) => {
@@ -82,16 +84,26 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 messageElem.style.borderColor = "";
             }
-
-            firstnameElem.value = "";
-            lastnameElem.value = "";
-            emailElem.value = "";
-            phoneElem.value = "";
-            subjectElem.value = "";
-            messageElem.value = "";
-            contactFormElem.submit();
+            // firstnameElem.value = "";
+            // lastnameElem.value = "";
+            // emailElem.value = "";
+            // phoneElem.value = "";
+            // subjectElem.value = "";
+            // messageElem.value = "";
+            let confirmationmessage = `Thanks for contacting us ${firstnameElem.value}, we will get back to you as soon as possible!`
+            showmailConfirmation(confirmationmessage);
         });
+    };
+
+    function showmailConfirmation(message){
+        mailsuccessElem.classList.add("mailsuccess--animation");
+        mailsuccessTextElem.textContent = message
+        setTimeout(() => {
+            mailsuccessElem.classList.remove("mailsuccess--animation");
+        }, 4000);
+        window.scrollTo(0, 0); 
     }
+    
     function validateEmail(email) {
         var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(String(email).toLowerCase());
@@ -106,7 +118,8 @@ document.addEventListener("DOMContentLoaded", () => {
             event.target[0].style.border = "1px solid red";
             return false;
         } else {
-            alert("Thanks for subscribing");
+            let confirmationmessage = `Thanks for subscribing to our newsletter!`
+            showmailConfirmation(confirmationmessage);
             event.target[0].style.border = "";
             event.target[0].value = "";
         }
@@ -139,7 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let ceoFiredOverlayElem = document.querySelector(".teammember_fired");
     function fireCeoHireNewUpdateInfo() {
         if (timercounter == 60 && ceoFiredOverlayElem != null) {
-            
+
             setNetworthInterval(false);
 
             timercounter = 0;
@@ -203,4 +216,15 @@ document.addEventListener("DOMContentLoaded", () => {
         x = x.replace(/\./g, "");
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     };
+
+    let galleryitemElems = document.querySelectorAll(".gallery_item");
+    if (galleryitemElems != null){
+        galleryitemElems.forEach((galleryitemElem,index) => {
+            setTimeout(function(){
+                galleryitemElem.classList.remove("gallery_item--load");
+            },
+            100 * index);
+        });
+    }
+
 }); // DOMContentLoaded End

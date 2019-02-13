@@ -1,3 +1,16 @@
+.mailsuccess{
+    background-color: green;
+    display: flex;
+    justify-content: center;
+    color: white;
+    max-height: 0px;
+    transition: all 1s;
+    padding: 0 1em;
+    box-sizing: border-box; 
+}
+.mailsuccess--animation{
+    max-height: 100px
+}
 .contact-sitetop{
     height: 70vh;
 }

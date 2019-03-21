@@ -1,6 +1,8 @@
-let headerElem = document.querySelector("header")
-fetch('nav.html')
-    .then((response) => { return response.text() })
-    .then((data) => {
-        headerElem.innerHTML = data;
-    });
+document.addEventListener('DOMContentLoaded', () => {
+    let headerElem = document.querySelector("header")
+    fetch('nav.html')
+        .then((response) => { return response.text() })
+        .then((data) => {
+            headerElem.innerHTML = data;
+        });
+});

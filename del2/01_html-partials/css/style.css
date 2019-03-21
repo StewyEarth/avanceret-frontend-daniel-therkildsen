@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+}
+header{
+    background-color: black;
+    padding: 1em;
+}
+nav ul{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+nav li{
+    margin-left: 1em;
+}
+a{
+    text-decoration: none;
+    color: white;
+}
+a:hover{
+    color: orange;
+}

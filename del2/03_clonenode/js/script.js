@@ -5,8 +5,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let titleArray = ["Taxi trip","Beach trip","Airplane ride"]
 
     titleArray.forEach(title => {
-        clone = itemElem.cloneNode(true)
-        bodyElem.appendChild(clone)
+        clone = itemElem.cloneNode(true);
+        clone.querySelector(".item-title").innerHTML = title;
+        bodyElem.appendChild(clone);
     });
 
 });

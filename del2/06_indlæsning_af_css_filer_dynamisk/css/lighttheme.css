@@ -1,0 +1,11 @@
+header{
+    background-color: #00bf8f;
+}
+.themeSwitchBtn{
+
+    background-color: #00bf8f;
+    color: white;
+}
+.themeSwitchBtn:hover{
+    background-color: #00a77d;
+}

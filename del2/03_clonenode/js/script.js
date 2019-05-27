@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let itemClone = itemTemplateElem.cloneNode(true); //When true it's allowed child notes.
         itemClone.querySelector(".item-title").innerHTML = title;
         bodyElem.appendChild(itemClone);
+
     });
 
 });

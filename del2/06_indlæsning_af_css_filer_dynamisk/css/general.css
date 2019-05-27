@@ -4,6 +4,7 @@ body{
     transition: background-color .5s;
 }
 header{
+    display: flex;
     padding: 1em;
     height: 2em;
     transition: background-color .5s;
